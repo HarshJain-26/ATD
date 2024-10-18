@@ -10,6 +10,8 @@ Before setting up the project, ensure you have the following installed:
 
 - JDK (Java Development Kit) 8 or later.
 - MySQL (relational database management system).
+- MySQL Workbench or DBeaver, GUI tool for database (optional)
+- Postman or (any tool) for testing APIs.
 
 ## Installation
 
@@ -37,10 +39,11 @@ cd ATD
    - spring.jpa.properties.hibernate.format_sql=true
 
 ## FileSystem setup
+   In application.properties
 
-file.path=files/
+   - file.path=files/
 
-This will create a new directory in your project. All files will stored in 'files' directory.
+   - This will create a new directory in your project. All newly created files will stored in 'files/' directory.
 
 ## Run the Application
 
@@ -52,15 +55,15 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-Once started, the application will be running at http://localhost:8080/
+Once started, the application will be running at http://localhost:8080/ (default)
 
 ## Usage
 
 You can interact with the API by sending HTTP requests using tools like Postman or curl. For example:
 
-- curl http://localhost:8080/api/v1/{endpoint}/
-
 - If you are using Postman select 'body > raw > JSON'
+
+- http://localhost:8080/api/v1/{endpoint}/
 
 ## Endpoints
 
@@ -217,6 +220,11 @@ You can interact with the API by sending HTTP requests using tools like Postman 
       3. Pincode should not be less than or greater than 6 digit.
       4. Email should be valid email.
 
+## Notes
+
+- Ensure you replace your-username and your-password in application.properties with your actual MySQL credentials.
+- The schema will be automatically updated in the database when the application starts (spring.jpa.hibernate.ddl-auto=update).
+  
 <br>
 
 ## CRUD API with FILESYSTEM
@@ -228,7 +236,9 @@ You can interact with the API by sending HTTP requests using tools like Postman 
    Method: Post
 
    - Request Body
-     If you are using Postman select 'body > form-data > value (File)'. Select the file.
+      <p>
+      If you are using Postman select 'body > form-data > value (File)'. Select the file from the your local machine.
+      </p>
 
    - Response Body
 
@@ -238,7 +248,7 @@ You can interact with the API by sending HTTP requests using tools like Postman 
 
    New file will be created in 'files/' directory.
 
-2. Fetch All files (Get)
+3. Fetch All files (Get)
 
    Endpoint: http://localhost:8080/api/v1/file/
 
@@ -254,7 +264,7 @@ You can interact with the API by sending HTTP requests using tools like Postman 
    ]
    ```
 
-3. View file (Get)
+4. View file (Get)
 
    Endpoint: http://localhost:8080/api/v1/file/{fileName}
 
@@ -263,7 +273,7 @@ You can interact with the API by sending HTTP requests using tools like Postman 
    - Open you favourite browser, hit the above EndPoint.
 
 
-4. Download file (Get)
+5. Download file (Get)
 
    Endpoint: http://localhost:8080/api/v1/file/{fileName}/download
 
@@ -271,7 +281,7 @@ You can interact with the API by sending HTTP requests using tools like Postman 
 
    - Open you favourite browser, hit the above EndPoint.
 
-5. Delete file (Delete)
+6. Delete file (Delete)
 
    Endpoint: http://localhost:8080/api/v1/file/{fileName}
 
@@ -283,11 +293,6 @@ You can interact with the API by sending HTTP requests using tools like Postman 
    File Deleted
    ```
 
-### All Endpoints have proper error handling and response.
-
-## Notes
-
-- Ensure you replace your-username and your-password in application.properties with your actual MySQL credentials.
-- The schema will be automatically updated in the database when the application starts (spring.jpa.hibernate.ddl-auto=update).
+### All above Endpoints have proper error handling and response.
 
 ### Author - Harsh Jain
